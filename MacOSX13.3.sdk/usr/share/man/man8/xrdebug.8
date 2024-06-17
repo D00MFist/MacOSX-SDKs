@@ -1,0 +1,83 @@
+.\""Copyright (c) 2020 Apple Computer, Inc. All Rights Reserved.
+.Dd February 13, 2020
+.Dt xrdebug 8
+.Os "Mac OS X"
+.Sh NAME                  
+.Nm xrdebug
+.Nd View status of active CoreXR device(s) on system
+.\"																				SYNOPSIS 
+.Sh SYNOPSIS             
+.Nm 
+.Op Ar list
+.Op Ar info
+.Op Ar pair
+.Op Ar calibrateReferenceSpace
+.Op Ar monitor
+.Ar ...
+.\"																				DESCRIPTION 
+.Sh DESCRIPTION
+The 
+.Nm
+command is used to display the state and properties of all active CoreXR devices connected to a system.
+.Pp
+A list of commands and their descriptions:
+.Bl -tag -width "calibrateReferenceSpace <idx>"
+.It Ar list
+Lists devices currently attached to system (idx: handle: product/model)
+.It Ar info <deviceType> <idx>
+Prints in detail the attributes of device indexed based on
+.Ar <idx>
+.See the
+.Ar list
+command for valid
+.Ar <idx>
+values to use.
+.Ar <deviceType>
+could be any of the
+.Ar headset
+,
+.Ar controller
+,
+.Ar tracker
+,
+.Ar trackingSystem
+,
+.Ar trackingDevice.
+.It Ar pair <idx>
+Pair the wireless device at index
+.Ar <idx>
+to the system.
+.It Ar calibrateReferenceSpace <idx>
+Grouping and calibration of tracking devices in a given tracking system at
+.Ar <idx>
+index.
+.It Ar monitor
+Simply logs the activities like new device detection or tracking state change on terminal.
+.Sh EXAMPLES
+$ 
+.Nm
+list
+.br
+List active XR Devices.
+.Pp
+$
+.Nm
+info controller 0
+.br
+Prints info for controller at index 0 in the list.
+.Pp
+$
+.Nm
+pair 1
+.br
+Put wireless device at index 1 in the list to pairing mode, and run this command to pair it with the system.
+.\"																				SEE ALSO
+.Sh SEE ALSO 
+.Xr plist 5
+.Xr sudo 8
+.Xr launchd 8
+.\"																				HISTORY 
+.Sh HISTORY
+The command line
+.Nm
+tool first appeared in macOS 11.
